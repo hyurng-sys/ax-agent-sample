@@ -1,0 +1,72 @@
+.recordsContainer {
+  margin-top: 2rem;
+}
+
+.recordsContainer h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.recordsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+}
+
+.recordItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.recordDate {
+  font-weight: 500;
+  color: #333;
+}
+
+.recordValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+}
+
+.recordValue.low {
+  color: #0066cc;
+  background-color: #e6f2ff;
+}
+
+.recordValue.normal {
+  color: #00aa00;
+  background-color: #e6ffe6;
+}
+
+.recordValue.high {
+  color: #cc0000;
+  background-color: #ffe6e6;
+}
+
+.recordDelete {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.recordDelete:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #c00;
+}
