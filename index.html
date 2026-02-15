@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안형균 건강앱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>안형균 건강앱</h1>
+            <p class="subtitle">저녁 식후 2시간 혈당 관리</p>
+        </header>
+
+        <main>
+            <!-- 혈당 입력 섹션 -->
+            <section class="input-section">
+                <h2>오늘의 혈당 입력</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="date">날짜</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="bloodSugar">혈당 (mg/dL)</label>
+                        <input type="number" id="bloodSugar" placeholder="예: 120" min="0" max="600" required>
+                    </div>
+                    <button id="addBtn" class="btn-primary">기록 추가</button>
+                </div>
+            </section>
+
+            <!-- 기간 선택 탭 -->
+            <section class="view-section">
+                <div class="tabs">
+                    <button class="tab active" data-period="daily">일간</button>
+                    <button class="tab" data-period="weekly">주간</button>
+                    <button class="tab" data-period="monthly">월간</button>
+                </div>
+
+                <!-- 통계 요약 -->
+                <div class="stats-summary">
+                    <div class="stat-card">
+                        <div class="stat-label">평균</div>
+                        <div class="stat-value" id="avgValue">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">최고</div>
+                        <div class="stat-value" id="maxValue">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">최저</div>
+                        <div class="stat-value" id="minValue">-</div>
+                    </div>
+                </div>
+
+                <!-- 건강 평가 섹션 -->
+                <div class="health-advice" id="healthAdvice">
+                    <div class="advice-header">
+                        <span class="advice-icon">💡</span>
+                        <h3>건강 평가 및 조언</h3>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-status" id="adviceStatus">
+                            <span class="status-badge" id="statusBadge">-</span>
+                            <p class="status-text" id="statusText">데이터를 입력하면 건강 평가가 표시됩니다.</p>
+                        </div>
+                        <div class="advice-tips" id="adviceTips"></div>
+                    </div>
+                </div>
+
+                <!-- 차트 영역 -->
+                <div class="chart-container">
+                    <canvas id="bloodSugarChart"></canvas>
+                </div>
+
+                <!-- 기록 리스트 -->
+                <div class="records-container">
+                    <h3>기록 내역</h3>
+                    <div id="recordsList" class="records-list">
+                        <p class="empty-message">아직 기록이 없습니다. 첫 혈당을 기록해보세요!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
