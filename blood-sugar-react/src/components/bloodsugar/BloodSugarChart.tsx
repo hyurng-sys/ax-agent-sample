@@ -11,7 +11,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     const level = getBloodSugarLevel(value)
     const colors = {
       low: '#3b82f6',
-      normal: '#03C75A',
+      normal: '#E6007E',
       high: '#ef4444',
     }
 
@@ -59,8 +59,8 @@ export function BloodSugarChart() {
         <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="colorBloodSugar" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#03C75A" stopOpacity={0.3}/>
-              <stop offset="95%" stopColor="#03C75A" stopOpacity={0.05}/>
+              <stop offset="5%" stopColor="#E6007E" stopOpacity={0.3}/>
+              <stop offset="95%" stopColor="#E6007E" stopOpacity={0.05}/>
             </linearGradient>
           </defs>
 
@@ -103,11 +103,11 @@ export function BloodSugarChart() {
           <Area
             type="monotone"
             dataKey="혈당"
-            stroke="#03C75A"
+            stroke="#E6007E"
             strokeWidth={3}
             fill="url(#colorBloodSugar)"
-            dot={{ fill: '#03C75A', strokeWidth: 2, r: 5, stroke: '#fff' }}
-            activeDot={{ r: 7, stroke: '#03C75A', strokeWidth: 3, fill: '#fff' }}
+            dot={{ fill: '#E6007E', strokeWidth: 2, r: 5, stroke: '#fff' }}
+            activeDot={{ r: 7, stroke: '#E6007E', strokeWidth: 3, fill: '#fff' }}
           />
         </AreaChart>
       </ResponsiveContainer>
