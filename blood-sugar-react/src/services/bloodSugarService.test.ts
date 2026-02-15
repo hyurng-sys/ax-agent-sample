@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { BloodSugarService } from './bloodSugarService'
-import type { BloodSugarRecord } from '../types/bloodSugar'
 
 describe('BloodSugarService', () => {
   beforeEach(() => {
@@ -32,7 +31,7 @@ describe('BloodSugarService', () => {
 
     it('should update existing record for same date', () => {
       BloodSugarService.addRecord('2026-02-15', 120)
-      const updated = BloodSugarService.addRecord('2026-02-15', 130)
+      BloodSugarService.addRecord('2026-02-15', 130)
 
       const records = BloodSugarService.getAllRecords()
       expect(records).toHaveLength(1)

@@ -62,7 +62,6 @@ describe('HealthAdvice', () => {
     rerender(<HealthAdvice />)
 
     // Status should change from excellent to good/warning
-    const statusText = screen.queryByText(/우수/i)
     // May or may not still be excellent depending on average
   })
 })

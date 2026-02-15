@@ -1,11 +1,68 @@
-# React + TypeScript + Vite
+# 안형균 건강앱 - React Refactored Version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+혈당 관리 웹 애플리케이션 (React + TypeScript + Vite)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 혈당 측정 기록 관리
+- 차트를 통한 데이터 시각화
+- 목표 설정 및 추적
+- 로컬 스토리지 기반 데이터 저장
+
+## Tech Stack
+
+- **React 19** - UI 라이브러리
+- **TypeScript** - 타입 안전성
+- **Vite** - 빌드 도구
+- **Zustand** - 상태 관리
+- **Recharts** - 차트 라이브러리
+- **Vitest** - 테스팅 프레임워크
+
+## Development
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+## Deployment
+
+This app is deployed on Vercel.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+
+### Quick Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 ## React Compiler
 

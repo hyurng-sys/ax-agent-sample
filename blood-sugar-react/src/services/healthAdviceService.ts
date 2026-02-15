@@ -1,5 +1,4 @@
 import type { Stats, BloodSugarRecord, HealthAdvice, AdviceStatus, AdviceTip } from '../types/bloodSugar'
-import { getBloodSugarLevel } from '../utils/statsCalculator'
 
 export function generateHealthAdvice(stats: Stats, records: BloodSugarRecord[]): HealthAdvice {
   // Handle empty data

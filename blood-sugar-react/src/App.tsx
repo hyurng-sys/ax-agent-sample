@@ -6,13 +6,15 @@ import { StatsSummary } from './components/bloodsugar/StatsSummary'
 import { HealthAdvice } from './components/bloodsugar/HealthAdvice'
 import { BloodSugarChart } from './components/bloodsugar/BloodSugarChart'
 import { RecordsList } from './components/bloodsugar/RecordsList'
+import { autoMigrate } from './utils/dataMigration'
 import './App.css'
 
 function App() {
   const loadRecords = useBloodSugarStore(state => state.loadRecords)
 
   useEffect(() => {
-    loadRecords()
+    autoMigrate() // Run migration first
+    loadRecords()  // Then load records
   }, [loadRecords])
 
   return (
