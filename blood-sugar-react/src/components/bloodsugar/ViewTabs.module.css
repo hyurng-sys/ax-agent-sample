@@ -1,33 +1,41 @@
+/* View Section */
+.viewSection {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* Tabs */
 .tabs {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--bg-color);
+  padding: 6px;
+  border-radius: 10px;
 }
 
 .tab {
   flex: 1;
-  padding: 0.75rem 1.5rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
-  color: #666;
+  transition: all 0.3s ease;
 }
 
 .tab:hover {
-  background-color: #f5f5f5;
-  border-color: #ccc;
+  background: var(--naver-green-light);
+  color: var(--naver-green);
 }
 
 .tab.active {
-  background-color: #03C75A;
+  background: var(--naver-green);
   color: white;
-  border-color: #03C75A;
-  font-weight: 600;
-}
-
-.tab.active:hover {
-  background-color: #02a849;
+  box-shadow: 0 2px 6px rgba(3, 199, 90, 0.3);
 }

@@ -1,33 +1,41 @@
+/* Stats Summary */
 .statsSummary {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .statCard {
-  flex: 1;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 1.5rem;
+  background: var(--naver-green-light);
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
-  border: 1px solid #eee;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  border-color: var(--naver-green);
+  transform: translateY(-2px);
 }
 
 .statLabel {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .statValue {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: #333;
+  color: var(--naver-green);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 600px) {
   .statsSummary {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
