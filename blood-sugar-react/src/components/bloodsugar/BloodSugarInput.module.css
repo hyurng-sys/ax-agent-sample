@@ -1,0 +1,91 @@
+/* Input Section */
+.inputSection {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.inputSection:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.inputSection h2 {
+  font-size: 1.1rem;
+  color: var(--naver-green);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.inputField {
+  flex: 1;
+  min-width: 150px;
+}
+
+.inputField label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.inputField input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.inputField input:focus {
+  outline: none;
+  border-color: var(--naver-green);
+  box-shadow: 0 0 0 3px rgba(3, 199, 90, 0.1);
+}
+
+.btnPrimary {
+  padding: 12px 28px;
+  background: var(--naver-green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(3, 199, 90, 0.3);
+}
+
+.btnPrimary:hover {
+  background: var(--naver-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(3, 199, 90, 0.4);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .inputGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary {
+    width: 100%;
+  }
+}

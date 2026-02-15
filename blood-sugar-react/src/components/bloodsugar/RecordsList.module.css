@@ -1,0 +1,76 @@
+/* Records Container */
+.recordsContainer h3 {
+  font-size: 1rem;
+  color: var(--naver-green);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.recordsList {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+.recordItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 8px;
+  background: var(--bg-color);
+  border-radius: 8px;
+  border-left: 4px solid var(--naver-green);
+  transition: all 0.3s ease;
+}
+
+.recordItem:hover {
+  background: var(--naver-green-light);
+  transform: translateX(4px);
+}
+
+.recordDate {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.recordValue {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--naver-green);
+}
+
+.recordValue.high {
+  color: #ff6b6b;
+}
+
+.recordValue.normal {
+  color: var(--naver-green);
+}
+
+.recordValue.low {
+  color: #ffa94d;
+}
+
+.recordDelete {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.recordDelete:hover {
+  background: #ff6b6b;
+  color: white;
+  border-color: #ff6b6b;
+}
