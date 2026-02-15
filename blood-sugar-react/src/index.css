@@ -7,21 +7,16 @@
 
 /* CSS Variables */
 :root {
-  --uplus-magenta: #E6007E;
-  --uplus-magenta-dark: #C0006A;
-  --uplus-magenta-light: #FFE6F3;
+  --naver-green: #03C75A;
+  --naver-green-dark: #02A84A;
+  --naver-green-light: #E6F9F0;
   --text-primary: #333;
   --text-secondary: #666;
   --bg-color: #f8f9fa;
   --card-bg: #ffffff;
   --border-color: #e0e0e0;
-  --shadow: 0 2px 8px rgba(230, 0, 126, 0.1);
-  --shadow-hover: 0 4px 16px rgba(230, 0, 126, 0.15);
-
-  /* Legacy support */
-  --naver-green: var(--uplus-magenta);
-  --naver-green-dark: var(--uplus-magenta-dark);
-  --naver-green-light: var(--uplus-magenta-light);
+  --shadow: 0 2px 8px rgba(3, 199, 90, 0.1);
+  --shadow-hover: 0 4px 16px rgba(3, 199, 90, 0.15);
 }
 
 /* Global Body Styles */

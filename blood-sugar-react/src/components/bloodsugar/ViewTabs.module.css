@@ -37,5 +37,5 @@
 .tab.active {
   background: var(--naver-green);
   color: white;
-  box-shadow: 0 2px 6px rgba(230, 0, 126, 0.3);
+  box-shadow: 0 2px 6px rgba(3, 199, 90, 0.3);
 }
