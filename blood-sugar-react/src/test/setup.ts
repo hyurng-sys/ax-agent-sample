@@ -33,3 +33,10 @@ class LocalStorageMock implements Storage {
 // Ensure the prototype is set up correctly for spying
 Object.setPrototypeOf(LocalStorageMock.prototype, Storage.prototype)
 global.localStorage = new LocalStorageMock()
+
+// Mock ResizeObserver for Recharts
+global.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}

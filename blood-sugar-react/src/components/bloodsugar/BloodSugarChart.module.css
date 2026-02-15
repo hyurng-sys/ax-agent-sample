@@ -1,0 +1,20 @@
+.chartContainer {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.chartContainer h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #999;
+  padding: 3rem 1rem;
+  font-size: 0.95rem;
+}
