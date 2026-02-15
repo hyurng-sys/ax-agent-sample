@@ -1,0 +1,13 @@
+{
+  "buildCommand": "cd blood-sugar-react && npm install && npm run build",
+  "outputDirectory": "blood-sugar-react/dist",
+  "installCommand": "cd blood-sugar-react && npm install",
+  "devCommand": "cd blood-sugar-react && npm run dev",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
