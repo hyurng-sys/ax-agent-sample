@@ -1,0 +1,16 @@
+services:
+  meeting-bot:
+    build: .
+    restart: always
+    env_file: .env
+    environment:
+      - PORT=10000
+    ports:
+      - "10000:10000"
+    volumes:
+      - ./temp:/app/temp
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
