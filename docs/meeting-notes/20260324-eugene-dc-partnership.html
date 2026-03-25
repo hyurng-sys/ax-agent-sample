@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260324 유진투자증권 DC 개발 사업 파트너십 회의</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface-2: #232733;
+            --border: #2e3345;
+            --text: #e4e7ef;
+            --text-dim: #8b90a0;
+            --accent: #6c8cff;
+            --accent-light: #8fa8ff;
+            --green: #4ade80;
+            --red: #f87171;
+            --orange: #fb923c;
+            --yellow: #facc15;
+            --purple: #a78bfa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #1e2a4a 0%, #0f1117 50%, #1a1030 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 2rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(108,140,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(108,140,255,0.12);
+            border: 1px solid rgba(108,140,255,0.25);
+            color: var(--accent-light);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.03em;
+        }
+        .hero h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-meta-item svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        /* Navigation */
+        .toc-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .toc-bar::-webkit-scrollbar { height: 0; }
+        .toc-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            padding: 0 1rem;
+        }
+        .toc-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: var(--accent-light);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Main */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 2.5rem;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(108,140,255,0.15);
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .section-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .card-accent {
+            border-left: 3px solid var(--accent);
+        }
+
+        /* KPI Row */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .kpi-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .kpi-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .kpi-sub {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+        }
+
+        /* Attendees */
+        .attendees {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .attendee {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem 0.85rem;
+            font-size: 0.82rem;
+        }
+        .attendee-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .attendee-name { font-weight: 600; }
+        .attendee-role { color: var(--text-dim); font-size: 0.75rem; }
+
+        /* Summary */
+        .summary-text {
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: var(--text);
+        }
+        .highlight {
+            background: rgba(108,140,255,0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        /* Discussion Topics */
+        .topic {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .topic-header:hover {
+            background: var(--surface-2);
+        }
+        .topic-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .topic-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            flex: 1;
+        }
+        .topic-toggle {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .topic.open .topic-toggle {
+            transform: rotate(180deg);
+        }
+        .topic-body {
+            display: none;
+            padding: 0 1.25rem 1.25rem;
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .topic.open .topic-body {
+            display: block;
+        }
+
+        /* Decision Table */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        thead {
+            background: var(--surface-2);
+        }
+        th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--accent-light);
+            white-space: nowrap;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(108,140,255,0.03); }
+
+        /* Risk */
+        .risk-item {
+            display: flex;
+            gap: 12px;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+        .risk-item:last-child { border-bottom: none; }
+        .risk-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: rgba(248,113,113,0.12);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-top: 2px;
+        }
+
+        /* Decisions */
+        .decision-item {
+            display: flex;
+            gap: 12px;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+        .decision-item:last-child { border-bottom: none; }
+        .decision-check {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: rgba(74,222,128,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        /* Action Items */
+        .action-item {
+            display: flex;
+            gap: 12px;
+            padding: 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+        }
+        .action-checkbox {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+        .action-content { flex: 1; }
+        .action-assignee {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(167,139,250,0.1);
+            color: var(--purple);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        /* Intelligence Section */
+        .intel-card {
+            background: linear-gradient(135deg, rgba(108,140,255,0.05) 0%, var(--surface) 100%);
+            border: 1px solid rgba(108,140,255,0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .intel-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .intel-list {
+            list-style: none;
+            padding: 0;
+        }
+        .intel-list li {
+            position: relative;
+            padding: 0.4rem 0 0.4rem 1.25rem;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        .intel-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Insight Section */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .insight-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-top: 3px solid;
+        }
+        .insight-card:nth-child(1) { border-top-color: var(--accent); }
+        .insight-card:nth-child(2) { border-top-color: var(--green); }
+        .insight-card:nth-child(3) { border-top-color: var(--orange); }
+        .insight-card:nth-child(4) { border-top-color: var(--purple); }
+        .insight-num {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .insight-card h4 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        .insight-card p {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 2rem 1.25rem 1.5rem; }
+            .hero h1 { font-size: 1.3rem; }
+            .container { padding: 1.5rem 1.25rem 3rem; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .insight-grid { grid-template-columns: 1fr; }
+            .hero-meta { gap: 0.75rem; }
+        }
+
+        /* Print */
+        @media print {
+            body { background: #fff; color: #1a1a1a; }
+            .toc-bar { display: none; }
+            .topic-body { display: block !important; }
+            .card, .topic, .intel-card, .insight-card, .action-item, .kpi {
+                background: #fff;
+                border-color: #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"/><path d="M8 3.5a.75.75 0 01.75.75v3.69l2.28 2.28a.75.75 0 11-1.06 1.06l-2.5-2.5A.75.75 0 017.25 8V4.25A.75.75 0 018 3.5z"/></svg>
+            TYPE A &middot; 고객 미팅
+        </div>
+        <h1>유진투자증권 DC 개발 사업 파트너십 및 금융 협력 방안 회의</h1>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                2026년 3월 24일 (화) 오전 11:29
+            </div>
+            <div class="hero-meta-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                약 54분
+            </div>
+            <div class="hero-meta-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                참석자 6명
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- TOC -->
+<nav class="toc-bar">
+    <div class="toc-inner">
+        <a href="#overview" class="toc-link active">개요</a>
+        <a href="#summary" class="toc-link">핵심 요약</a>
+        <a href="#discussion" class="toc-link">논의 내용</a>
+        <a href="#decision-structure" class="toc-link">의사결정 구조</a>
+        <a href="#risks" class="toc-link">리스크</a>
+        <a href="#decisions" class="toc-link">결정사항</a>
+        <a href="#actions" class="toc-link">Next Action</a>
+        <a href="#intelligence" class="toc-link">인텔리전스</a>
+        <a href="#insights" class="toc-link">시사점</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- KPI -->
+    <div class="kpi-row">
+        <div class="kpi">
+            <div class="kpi-label">논의 주제</div>
+            <div class="kpi-value">7</div>
+            <div class="kpi-sub">DC 사업 전략 ~ 고객 Lock-in</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-label">결정사항</div>
+            <div class="kpi-value">5</div>
+            <div class="kpi-sub">Build-Borrow 전환 외</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-label">Action Items</div>
+            <div class="kpi-value">5</div>
+            <div class="kpi-sub">양사 공동 추진</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-label">핵심 리스크</div>
+            <div class="kpi-value" style="color:var(--red)">7</div>
+            <div class="kpi-sub">보수적 투자문화, 전력 확보 등</div>
+        </div>
+    </div>
+
+    <!-- 1. Overview -->
+    <section id="overview">
+        <div class="section-header">
+            <div class="section-num">1</div>
+            <h2>회의 개요</h2>
+        </div>
+        <div class="card">
+            <p style="font-size:0.88rem; margin-bottom:1rem;"><strong>회의 목적:</strong> LG유플러스와 유진투자증권 간 데이터센터 개발 사업 파트너십 구축을 위한 상호 역량 소개 및 협력 방향 탐색</p>
+            <div class="attendees">
+                <div class="attendee">
+                    <div class="attendee-avatar" style="background:linear-gradient(135deg,#6c8cff,#4a6cf7)">안</div>
+                    <div>
+                        <div class="attendee-name">안형균</div>
+                        <div class="attendee-role">LG유플러스 AI사업그룹</div>
+                    </div>
+                </div>
+                <div class="attendee">
+                    <div class="attendee-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c5cbf)">상무</div>
+                    <div>
+                        <div class="attendee-name">부동산개발실 상무</div>
+                        <div class="attendee-role">유진투자증권 (산업은행 출신)</div>
+                    </div>
+                </div>
+                <div class="attendee">
+                    <div class="attendee-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c5cbf)">홍</div>
+                    <div>
+                        <div class="attendee-name">홍창표</div>
+                        <div class="attendee-role">유진투자증권 부동산개발실</div>
+                    </div>
+                </div>
+                <div class="attendee">
+                    <div class="attendee-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c5cbf)">투자</div>
+                    <div>
+                        <div class="attendee-name">투자 담당</div>
+                        <div class="attendee-role">유진투자증권 (물류/DC 네트워크)</div>
+                    </div>
+                </div>
+                <div class="attendee">
+                    <div class="attendee-avatar" style="background:linear-gradient(135deg,#64748b,#475569)">+2</div>
+                    <div>
+                        <div class="attendee-name">기타 참석자 2인</div>
+                        <div class="attendee-role">소속 미상</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Executive Summary -->
+    <section id="summary">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>핵심 요약 (Executive Summary)</h2>
+        </div>
+        <div class="card card-accent">
+            <div class="summary-text">
+                <p>본 회의는 <strong>LG유플러스 AI사업그룹</strong>과 <strong>유진투자증권 부동산개발실</strong> 간의 첫 공식 대면 미팅으로, DC(데이터센터) 개발 사업에서의 상호 보완적 파트너십 가능성을 탐색하는 자리였다.</p>
+
+                <div class="highlight">
+                    <strong>LG유플러스:</strong> 코로케이션 사업자 1위의 운영 역량과 고객 기반을 보유하고 있으나, 대규모 투자에 필요한 금융 구조화 역량이 부족. 파주 DC 1센터(2조 원), 2센터(5조 원) 투자 보고 시 지주사 단계에서 강한 저항을 경험한 후, 자체 빌드 모델에서 <strong>외부 자본 활용(Build-Borrow) 모델</strong>로 전략 방향을 전환.
+                </div>
+
+                <div class="highlight" style="border-left-color: var(--purple);">
+                    <strong>유진투자증권:</strong> 산업은행 출신 인력 5명을 중심으로 3개 팀 14명 규모로 운영. 2022년부터 DC 개발 사업에 집중. 안산 카카오, 용인 덕성, 구로, 인천 도화 등 프로젝트 수행. <strong>에쿼티 투자, 펀딩, 사업관계자 조율</strong> 등 금융 중개 역할이 핵심 역량.
+                </div>
+
+                <p style="margin-top:1rem;">DC 투자 시장은 외국계 자금이 주류이며 <strong>IRR 18~24%</strong> 수준을 타겟으로 하고, 오퍼레이터 책임임차 20~30%가 시장 관행이다. 국민성장펀드(약 75조 원 규모) 등 국내 공적 자금의 DC 섹터 유입 가능성도 확인되었다.</p>
+
+                <div class="highlight" style="border-left-color: var(--orange);">
+                    <strong>승부 포인트:</strong> LG유플러스가 준공 전 고객 계약 확보 트랙 레코드를 축적하여 투자자 시장에서의 신뢰도를 높이는 것이며, 이것이 향후 파이낸싱 조건과 파트너십 교섭력을 좌우할 핵심 변수이다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Discussion -->
+    <section id="discussion">
+        <div class="section-header">
+            <div class="section-num">3</div>
+            <h2>주요 논의 내용</h2>
+        </div>
+
+        <div class="topic open" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">1</div>
+                <div class="topic-title">LG유플러스 DC 사업 전략 전환: 자체 빌드 → 외부 자본 활용 모델</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>LG유플러스는 국내 코로케이션 사업자 1위로서 <strong>15개 센터를 운영</strong>하고 있으며, IDC 초창기부터 무사고 운영 트랙 레코드를 보유하고 있다. 통신사로서 회선 시너지까지 확보한 강점이 있으나, 대규모 DC 신규 개발에 필요한 자본 조달에 구조적 한계를 겪고 있다.</p>
+                <p style="margin-top:0.75rem;">재작년 파주 DC 1센터(2조 원)와 2센터(5조 원) 동시 개발을 보고하였으나 <strong>지주사까지 경의가 올라가며 강한 저항</strong>에 부딪혔고, 이 경험을 계기로 사업 모델을 자체 빌드 일변도에서 <strong>외부 자본을 활용하는 Build-Borrow 병행 모델</strong>로 전면 전환하였다.</p>
+                <p style="margin-top:0.75rem;">LG그룹은 5대 그룹 중 유일하게 금융회사를 보유하지 않고 있으며, LG카드 실패 이후 금융 관련 비즈니스에 대한 그룹 차원의 기피 성향이 강하다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">2</div>
+                <div class="topic-title">고객 중심 의사결정 구조와 투자자 측 시각 간 괴리</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>LG유플러스의 DC 사업 의사결정 핵심은 <strong>이성우 담당</strong>과 글로벌 고객 담당 <strong>박수양 담당</strong>이 판단하는 고객 수요이다. 내부적으로는 DC 상면 100% 가동을 목표로 하며, 고객에게 제공할 상면이 부족하여 수십 메가와트 규모의 수요를 거절해 온 상황이다.</p>
+                <p style="margin-top:0.75rem;">반면 자산운용사와 투자자 측은 오퍼레이터의 보증 비율(책임임차 퍼센테이지)을 중심으로 투자 검토를 진행하며, 이 부분이 양측 간 커뮤니케이션의 주요 괴리 지점이다. LG유플러스 CFO 측은 보증 비율에 대해 보수적 가이드를 적용하는 반면, 사업 현장은 사실상 전량 충전을 전제로 움직이고 있다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">3</div>
+                <div class="topic-title">유진투자증권 DC 개발 사업 역량 및 접근 방식</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>유진투자증권 부동산개발실은 산업은행 출신 인력을 중심으로 2021년 2월 증권사로 이동한 이후, 물류센터와 인프라 개발 경험을 기반으로 <strong>2022년부터 DC 개발 사업에 본격 진출</strong>하였다.</p>
+                <p style="margin-top:0.75rem;">안산 카카오 프로젝트에서 에쿼티 135억, 후순위 350억 등 <strong>약 500억 원 규모</strong>를 투입하며 실전 경험을 축적하였고, 이후 용인 덕성, 구로, 인천 도화 등으로 사업을 확장하였다.</p>
+                <p style="margin-top:0.75rem;">핵심 역할은 매도인, 매수인, 시행사, 시공사 등 사업 관계자 간 니즈를 조율하고 <strong>펀딩과 사업 착공이 가능하도록 균형점을 찾아주는 금융 중개 기능</strong>이다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">4</div>
+                <div class="topic-title">DC 투자 시장 구조 및 자금 흐름 동향</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>현재 DC 개발 사업의 에쿼티 투자는 외국계 자금이 주류를 이루며, <strong>타겟 IRR은 18~24%</strong> 수준이다. 80MW급 사업 기준 에쿼티 약 <strong>3,000억 원</strong>이 필요하나, 단일 사업에 이 규모를 투자할 수 있는 국내 에쿼티 자본시장이 형성되어 있지 않아 글로벌 자금 의존이 불가피한 상황이다.</p>
+                <p style="margin-top:0.75rem;">다만 산업은행의 <strong>국민성장펀드(75조 원 규모)</strong>가 IDC 섹터에 자금을 공급하기 시작하면서, 우선주 10% 내외의 투자를 통해 보통주 투자자의 업사이드를 확대하는 구조가 가능해졌다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">5</div>
+                <div class="topic-title">수도권 DC 토지 및 전력 확보 경쟁 현황</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>투자자들의 관심이 수도권에 집중되어 있으며, 지방 확대는 아직 시기상조라는 데 양측 인식이 일치하였다. 수도권 내 하이퍼스케일급(수전 기준 40~50MW) DC 개발이 가능한 부지는 <strong>소수의 후보지로 한정</strong>되어 있으며, 전력 영향 평가 통과라는 기술적 제약이 추가로 작용하고 있다.</p>
+                <p style="margin-top:0.75rem;"><strong>SH공사</strong>가 서울 내 20~40MW 규모의 공공향 IDC 개발 사업을 공고한 것이 주목할 만한 동향으로 언급되었다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">6</div>
+                <div class="topic-title">노년 센터(논현동) 재개발 검토 및 금융 구조 자문 니즈</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>LG유플러스가 최초로 구축한 논현동 소재 노년 센터는 운영 약 <strong>26년이 경과</strong>하였으며, 수전 용량 10MW 이상의 저집적 운영 센터이다. 강남이라는 압도적 입지에서 DC 수요는 확실하나, 시설 노후화로 인한 운영 불안감이 커지고 있다.</p>
+                <p style="margin-top:0.75rem;">LG유플러스 측은 토지 매각, DC 신축, <strong>DC+상업시설 복합 개발</strong> 등 복수의 옵션을 검토 중이며, 유진투자증권에 금융 구조 자문을 요청할 의향을 밝혔다.</p>
+            </div>
+        </div>
+
+        <div class="topic" onclick="this.classList.toggle('open')">
+            <div class="topic-header">
+                <div class="topic-num">7</div>
+                <div class="topic-title">DC 사업의 고객 Lock-in 특성과 투자 안정성</div>
+                <div class="topic-toggle">&#9662;</div>
+            </div>
+            <div class="topic-body" onclick="event.stopPropagation()">
+                <p>고객이 일단 서버를 입주시키면 해당 기업이 도산하지 않는 한 서버를 이전하는 것은 <strong>사실상 불가능</strong>하며, 위메프 사례에서도 회생 자금이 유입되었을 때 가장 먼저 지급된 비용이 IDC 사용료였다.</p>
+                <p style="margin-top:0.75rem;">이러한 Lock-in 효과로 LG유플러스는 장기 계약보다 <strong>단기 계약을 선호</strong>하는데, 계약 만료 시 시가로 임대료를 재조정할 수 있기 때문이다. 다만 <strong>램프업 기간</strong>이 가장 높은 리스크 구간이며, 글로벌 고객의 경우 계약 협상에만 1년 6개월이 소요된다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Decision Structure -->
+    <section id="decision-structure">
+        <div class="section-header">
+            <div class="section-num">4</div>
+            <h2>의사결정 구조 및 평가 기준</h2>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>주체</th>
+                        <th>영향력</th>
+                        <th>기준</th>
+                        <th>코멘트</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3" style="font-weight:600;">DC 신규 개발 투자</td>
+                        <td>LG유플러스 CFO 조직</td>
+                        <td><span style="color:var(--red);font-weight:600;">높음</span></td>
+                        <td>오퍼레이터 보증 비율, 재무 리스크 한도</td>
+                        <td style="font-size:0.78rem;">보증 비율에 대해 보수적 가이드 적용</td>
+                    </tr>
+                    <tr>
+                        <td>LG유플러스 AI사업그룹</td>
+                        <td><span style="color:var(--red);font-weight:600;">높음</span></td>
+                        <td>고객 수요 확보 가능성, 상면 부족 해소</td>
+                        <td style="font-size:0.78rem;">이성우 담당·박수양 담당이 핵심 의사결정자</td>
+                    </tr>
+                    <tr>
+                        <td>LG그룹 지주사/이사회</td>
+                        <td><span style="color:var(--red);font-weight:600;">최종 승인</span></td>
+                        <td>대규모 투자(수조 원 단위) 그룹 승인</td>
+                        <td style="font-size:0.78rem;">금융 비즈니스 기피, 파주 DC 보고 시 저항</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" style="font-weight:600;">에쿼티 투자 의사결정</td>
+                        <td>유진투자증권 부동산개발실</td>
+                        <td><span style="color:var(--orange);font-weight:600;">중간</span></td>
+                        <td>인허가 가능성, 사업성 평가</td>
+                        <td style="font-size:0.78rem;">에쿼티 선투입 후 엔드유저 매칭 모델</td>
+                    </tr>
+                    <tr>
+                        <td>외국계 에쿼티 투자자</td>
+                        <td><span style="color:var(--red);font-weight:600;">높음</span></td>
+                        <td>IRR 18~24%, 책임임차 20~30%</td>
+                        <td style="font-size:0.78rem;">건축허가/유저 확보 이후 진입 경향</td>
+                    </tr>
+                    <tr>
+                        <td>국민성장펀드(산업은행)</td>
+                        <td><span style="color:var(--orange);font-weight:600;">중간</span></td>
+                        <td>우선주 10% 내외, 산업 육성 정책 부합</td>
+                        <td style="font-size:0.78rem;">국내 기관 자금 유입의 마중물 역할</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 5. Risks -->
+    <section id="risks">
+        <div class="section-header">
+            <div class="section-num">5</div>
+            <h2>핵심 리스크</h2>
+        </div>
+        <div class="card">
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--red);">!</div>
+                <div>LG그룹의 <strong>보수적 투자 문화와 금융 비즈니스 기피 성향</strong>으로 인해 대규모 DC 개발 투자에 대한 내부 의사결정이 지연될 수 있으며, 시장 기회를 놓칠 가능성이 존재한다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--red);">!</div>
+                <div>수도권 하이퍼스케일급 DC 부지가 <strong>소수 후보지로 한정</strong>되어 있고, 전력 영향 평가라는 기술적 관문이 추가되어 토지 및 전력 확보 경쟁이 심화되고 있다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--orange);">!</div>
+                <div>오퍼레이터 <strong>보증 비율에 대한 내부(CFO vs 사업부)와 외부 투자자 간 시각차</strong>가 상존하며, 파이낸싱 구조 설계와 투자자 유치의 병목이 될 수 있다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--orange);">!</div>
+                <div>DC <strong>램프업 기간</strong>(커미셔닝 및 고객 입주)이 가장 높은 리스크 구간이며, 글로벌 고객의 까다로운 계약 조건과 장기 협상 기간이 사업 일정에 영향을 줄 수 있다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--orange);">!</div>
+                <div>노년 센터 재개발 시 <strong>DC와 상업시설 복합 개발의 법적 허용 여부</strong>가 불확실하며, 분양 사업 수행 역량 부재로 외부 파트너 의존도가 높아질 수 있다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--yellow);">!</div>
+                <div>SH공사의 서울 공공향 IDC 사업이 기존 민간 사업자의 전력 확보 노력에 <strong>예외적 선례</strong>를 만들 경우, 시장 내 형평성 이슈와 기존 사업자의 반발이 예상된다.</div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-icon" style="color:var(--yellow);">!</div>
+                <div><strong>화웨이 장비</strong>(컨테이너형 HDC 등)의 기술적 우위에도 불구하고 지정학적 리스크로 인해 도입이 제약되며, 대안 기술 확보가 필요하다.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Decisions -->
+    <section id="decisions">
+        <div class="section-header">
+            <div class="section-num">6</div>
+            <h2>결정사항</h2>
+        </div>
+        <div class="card">
+            <div class="decision-item">
+                <div class="decision-check">&#10003;</div>
+                <div>LG유플러스는 DC 개발 사업 모델을 자체 빌드 일변도에서 <strong>외부 자본 활용(Build-Borrow 병행) 모델</strong>로 전환 (사장급까지 합의된 방향)</div>
+            </div>
+            <div class="decision-item">
+                <div class="decision-check">&#10003;</div>
+                <div>유진투자증권과 LG유플러스 간 <strong>DC 개발 사업 장기 파트너십</strong>을 구축하는 방향으로 양측 합의</div>
+            </div>
+            <div class="decision-item">
+                <div class="decision-check">&#10003;</div>
+                <div><strong>노년 센터(논현동)</strong>의 고객 이전 및 재개발을 추진하기로 하였으며, 금융 구조에 대해 유진투자증권에 자문 요청</div>
+            </div>
+            <div class="decision-item">
+                <div class="decision-check">&#10003;</div>
+                <div>DC 사업 외 영역에서도 투자 검토 시 유진투자증권의 금융 자문을 활용할 수 있도록 <strong>상시 협력 채널 유지</strong></div>
+            </div>
+            <div class="decision-item">
+                <div class="decision-check">&#10003;</div>
+                <div><strong>SH공사 서울 공공향 IDC 사업</strong>에 대해 유진투자증권 측에서 배후 사업자 및 구조 파악 (유력 방향)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Next Actions -->
+    <section id="actions">
+        <div class="section-header">
+            <div class="section-num">7</div>
+            <h2>Next Action</h2>
+        </div>
+        <div class="action-item">
+            <div class="action-checkbox"></div>
+            <div class="action-content">
+                노년 센터(논현동) 재개발 관련 <strong>금융 조달 구조 및 복합 개발 모델</strong> 검토 자료 작성 후 LG유플러스에 제공
+                <div class="action-assignee">@유진투자증권 부동산개발실 / ~미정</div>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-checkbox"></div>
+            <div class="action-content">
+                SH공사 서울 공공향 IDC(20~40MW) 사업 공고의 <strong>배후 사업자 및 전력 확보 경로</strong> 파악
+                <div class="action-assignee">@유진투자증권 부동산개발실 / ~가급적 조기 착수</div>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-checkbox"></div>
+            <div class="action-content">
+                노년 센터 <strong>고객 이전 계획 수립</strong> 및 CF(재무) 조직과의 재개발 방향 내부 협의 진행
+                <div class="action-assignee">@LG유플러스 AI사업그룹</div>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-checkbox"></div>
+            <div class="action-content">
+                유진투자증권 팀과 <strong>후속 식사 미팅 일정</strong> 조율 및 구체적 협업 아젠다 정리
+                <div class="action-assignee">@LG유플러스 (안형균 또는 담당 임원) / ~단기 내</div>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-checkbox"></div>
+            <div class="action-content">
+                진행 중인 DC 개발 사업(용인 덕성, 구로, 인천 도화 등)에서 <strong>LG유플러스의 엔드유저 매칭 가능성</strong>을 구체적으로 검토
+                <div class="action-assignee">@양사 공동 / ~상시</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Intelligence -->
+    <section id="intelligence">
+        <div class="section-header">
+            <div class="section-num">8</div>
+            <h2>DBO 주선사 유진투자증권 인텔리전스</h2>
+        </div>
+
+        <div class="intel-card">
+            <div class="intel-title">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 12.5a5.5 5.5 0 110-11 5.5 5.5 0 010 11zM8 4a.75.75 0 01.75.75v2.5h2.5a.75.75 0 010 1.5h-2.5v2.5a.75.75 0 01-1.5 0v-2.5h-2.5a.75.75 0 010-1.5h2.5v-2.5A.75.75 0 018 4z"/></svg>
+                DC 개발 사업 역량 및 접근 방식
+            </div>
+            <ul class="intel-list">
+                <li>산업은행 출신 인력 중심, 2022년부터 <strong>DC 개발에 집중</strong></li>
+                <li>안산 카카오 에쿼티 135억, 후순위 350억 등 약 500억 투입 후 용인·구로·인천으로 확장</li>
+                <li>단순 자금조달이 아닌 <strong>이해관계자 니즈 조율 + 펀딩-인허가-착공 균형점 설계</strong></li>
+                <li>초기 단계에서 <strong>과감하게 선투입</strong> → 엔드유저/투자자 매칭하는 선행 투자 모델</li>
+            </ul>
+        </div>
+
+        <div class="intel-card">
+            <div class="intel-title">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 0a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V2a2 2 0 00-2-2H4zm0 1.5h8a.5.5 0 01.5.5v12a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5V2a.5.5 0 01.5-.5z"/><path d="M5.5 4h5v1h-5zM5.5 7h5v1h-5zM5.5 10h3v1h-3z"/></svg>
+                DC 투자 시장 구조 및 자금 흐름
+            </div>
+            <ul class="intel-list">
+                <li>에쿼티는 외국계 자금 주류, <strong>타겟 IRR 18~24%</strong></li>
+                <li>투자 검토 시 <strong>오퍼레이터 책임임차 20~30%</strong>가 기준</li>
+                <li>80MW급 기준 에쿼티 약 3,000억 원 필요 → 국내 단일 딜 소화 어려워 글로벌 자금 의존</li>
+                <li><strong>국민성장펀드(75조)</strong> 우선주 10% 투자로 보통주 업사이드 확대 구조 가능</li>
+            </ul>
+        </div>
+
+        <div class="intel-card">
+            <div class="intel-title">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 2a6 6 0 110 12A6 6 0 018 2zm-.75 3v4.5h1.5V5h-1.5zm0 6v1.5h1.5V11h-1.5z"/></svg>
+                수도권 DC 토지 및 전력 경쟁
+            </div>
+            <ul class="intel-list">
+                <li>수도권 집중, 지방 확대는 아직 시기상조</li>
+                <li>하이퍼스케일급(40~50MW) 부지는 <strong>소수 후보지</strong>로 제한</li>
+                <li><strong>전력 영향평가 통과</strong>가 핵심 병목</li>
+                <li>SH공사 공공향 IDC(20~40MW) 공고 → 배후 파트너 존재 가능성</li>
+            </ul>
+        </div>
+
+        <div class="intel-card">
+            <div class="intel-title">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 012 2v1H6V3a2 2 0 012-2zm3 3V3a3 3 0 10-6 0v1H3.5A1.5 1.5 0 002 5.5v8A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5v-8A1.5 1.5 0 0012.5 4H11z"/></svg>
+                노년 센터(논현동) 재개발 니즈
+            </div>
+            <ul class="intel-list">
+                <li>운영 26년 경과, 10MW+ 저집적. <strong>노후화 → 고객 이전 후 재개발</strong> 시점</li>
+                <li>토지 매각 / DC 신축 / <strong>DC+상업시설 복합 개발</strong> 등 복수 옵션 검토</li>
+                <li>법적 허용성, 금융조달 구조, 분양 수행역량 부족 → <strong>유진에 자문 의향</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 9. Insights -->
+    <section id="insights">
+        <div class="section-header">
+            <div class="section-num">9</div>
+            <h2>시사점</h2>
+        </div>
+        <div class="insight-grid">
+            <div class="insight-card">
+                <div class="insight-num">INSIGHT 01</div>
+                <h4>유진투자증권을 정보 허브로 활용</h4>
+                <p>수도권 부지/전력은 비공개 네트워크에서 먼저 도는 정보의 가치가 큼. 월 1회 파이프라인 공유 리듬, 관심 조건 필터 명확화, SH공사 공공향 트랙 별도 트래킹, "조기 신호" 중심 정보 요청 체계화 필요.</p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-num">INSIGHT 02</div>
+                <h4>국내 자본 믹스로 협상 카드 확보</h4>
+                <p>국민성장펀드 등 국내 공적자금을 섞는 구조는 자본 조달 안정성과 거버넌스/보증 비율에서의 협상 여지를 만들 수 있음. 오퍼레이터 보증 비율과 프리리스를 어떻게 보여줄지가 핵심.</p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-num">INSIGHT 03</div>
+                <h4>개발-금융 파트너십이 타임라인 좌우</h4>
+                <p>수도권은 후보지가 제한되어 좋은 부지 확보가 시간과 정보의 싸움. 유진과의 병렬 협업을 통해 조기 후보지 접근, 구조 검토, 투자자 커뮤니케이션을 동시에 진행하여 의사결정 리드타임 단축.</p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-num">INSIGHT 04</div>
+                <h4>논현동 노년 센터는 파일럿 협업 적합</h4>
+                <p>강남 입지 프리미엄으로 시나리오는 매력적이나, 용도지역/건축/소방/전력 규제 등 법적 허용성과 역할분담, 금융구조를 초기에 설계해야 함. 유진의 "이해관계자 조율+구조화" 강점이 잘 맞는 첫 협업 아젠다.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>Generated from Notion Meeting Note &middot; 20260324_유진투자증권_DC 개발 사업 파트너십 회의</p>
+    <p style="margin-top:0.25rem;opacity:0.6;">LG유플러스 AI사업그룹 &middot; Powered by Claude</p>
+</footer>
+
+<script>
+// Sticky TOC active state
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = document.querySelectorAll('section[id]');
+
+function updateActiveLink() {
+    let current = '';
+    sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) {
+            current = section.getAttribute('id');
+        }
+    });
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+}
+window.addEventListener('scroll', updateActiveLink);
+
+// Smooth scroll
+tocLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
